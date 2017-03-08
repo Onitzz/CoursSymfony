@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,6 +43,16 @@ class Auteur
      */
     private $coupeDeCheveux;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="auteur")
+     */
+    private $articles;
+
+    public function __construct() {
+        $this->articles = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -125,4 +136,3 @@ class Auteur
         return $this->coupeDeCheveux;
     }
 }
-

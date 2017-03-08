@@ -42,6 +42,11 @@ class Article
      */
     private $publication;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Auteur", inversedBy="articles")
+     * @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
+     */
+    private $auteur;
 
     /**
      * Get id
@@ -125,4 +130,3 @@ class Article
         return $this->publication;
     }
 }
-
