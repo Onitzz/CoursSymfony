@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Auteur;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
