@@ -136,4 +136,53 @@ class Auteur
     {
         return $this->coupeDeCheveux;
     }
+
+    /**
+    * addArticle
+    * @param Article $article
+    * @return Auteur
+    */
+    public function addArticle(Article $article)
+    {
+      $this->articles[] = $article;
+
+      return $this;
+    }
+
+    /**
+     * removeArticle
+     *
+     * @param Article $article
+     *
+     * @return Auteur
+     */
+    public function removeArticle(Article $article)
+    {
+      $this->articles->removeElement($article);
+
+      return $this;
+    }
+
+    /**
+     * Get Article
+     *
+     * @return ArrayCollection
+     */
+    public function getArticles()
+    {
+      return $this->articles;
+    }
+
+    /**
+     * Set Articles
+     *
+     * @param ArrayCollection $articles cette liste doit impérativement contenir des objets de type Article
+     * @return Auteur
+     */
+    public function setArticles(ArrayCollection $articles)
+    {
+      $this->articles = $articles;
+
+      return $this;
+    }
 }

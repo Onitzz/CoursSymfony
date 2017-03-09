@@ -10,6 +10,7 @@
                 <th>Titre</th>
                 <th>Corps</th>
                 <th>Publication</th>
+                <th>Auteur</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,9 @@
                 <td>{{ article.titre }}</td>
                 <td>{{ article.corps }}</td>
                 <td>{% if article.publication %}{{ article.publication|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                  {{ article.auteur.prenom }} {{ article.auteur.nom }}
+                </td>
                 <td>
                     <ul>
                         <li>

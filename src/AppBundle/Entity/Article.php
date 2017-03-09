@@ -3,7 +3,9 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Auteur;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -25,6 +27,13 @@ class Article
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="T'as pas donné de titre")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
@@ -32,6 +41,13 @@ class Article
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(name="corps", type="text")
      */
     private $corps;
@@ -48,6 +64,17 @@ class Article
      * @ORM\JoinColumn(name="auteur_id", referencedColumnName="id")
      */
     private $auteur;
+
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles")
+     * @ORM\JoinTable(name="articles_tags")
+     */
+    private $tags;
+
+    public function __construct() {
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -129,5 +156,29 @@ class Article
     public function getPublication()
     {
         return $this->publication;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param Auteur $auteur
+     *
+     * @return Article
+     */
+    public function setAuteur(Auteur $auteur)
+    {
+      $this->auteur = $auteur;
+
+      return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return Auteur
+     */
+    public function getAuteur()
+    {
+      return $this->auteur;
     }
 }
