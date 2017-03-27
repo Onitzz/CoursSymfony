@@ -38,6 +38,8 @@ class Tag
     private $description;
 
     /**
+     * var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags")
      */
     private $articles;
@@ -103,5 +105,54 @@ class Tag
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+    * addArticle
+    * @param Article $article
+    * @return Tag
+    */
+    public function addArticle(Article $article)
+    {
+      $this->articles[] = $article;
+
+      return $this;
+    }
+
+    /**
+     * removeArticle
+     *
+     * @param Article $article
+     *
+     * @return Tag
+     */
+    public function removeArticle(Article $article)
+    {
+      $this->articles->removeElement($article);
+
+      return $this;
+    }
+
+    /**
+     * Get Article
+     *
+     * @return ArrayCollection
+     */
+    public function getArticles()
+    {
+      return $this->articles;
+    }
+
+    /**
+     * Set Articles
+     *
+     * @param ArrayCollection $articles cette liste doit impérativement contenir des objets de type Article
+     * @return Tag
+     */
+    public function setArticles(ArrayCollection $articles)
+    {
+      $this->articles = $articles;
+
+      return $this;
     }
 }

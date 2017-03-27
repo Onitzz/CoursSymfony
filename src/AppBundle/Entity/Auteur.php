@@ -5,14 +5,14 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Article;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use FOS\UserBundle\Model\User as BaseUser;
 /**
  * Auteur
  *
  * @ORM\Table(name="auteur")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AuteurRepository")
  */
-class Auteur
+class Auteur extends BaseUser
 {
     /**
      * @var int
@@ -21,7 +21,7 @@ class Auteur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -52,6 +52,7 @@ class Auteur
     private $articles;
 
     public function __construct() {
+        parent::__construct();
         $this->articles = new ArrayCollection();
     }
 

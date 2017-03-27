@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Auteur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Auteur controller.
  *
- * @Route("auteur")
+ * @Route("/admin/auteur")
  */
 class AuteurController extends Controller
 {
@@ -26,7 +26,7 @@ class AuteurController extends Controller
 
         $auteurs = $em->getRepository('AppBundle:Auteur')->findAll();
 
-        return $this->render('AppBundle::auteur/index.html.twig', array(
+        return $this->render('AppBundle:Auteur:index.html.twig', array(
             'auteurs' => $auteurs,
         ));
     }
@@ -51,7 +51,7 @@ class AuteurController extends Controller
             return $this->redirectToRoute('auteur_show', array('id' => $auteur->getId()));
         }
 
-        return $this->render('AppBundle::auteur/new.html.twig', array(
+        return $this->render('AppBundle:Auteur:new.html.twig', array(
             'auteur' => $auteur,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class AuteurController extends Controller
     {
         $deleteForm = $this->createDeleteForm($auteur);
 
-        return $this->render('AppBundle::auteur/show.html.twig', array(
+        return $this->render('AppBundle:Auteur:show.html.twig', array(
             'auteur' => $auteur,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class AuteurController extends Controller
             return $this->redirectToRoute('auteur_edit', array('id' => $auteur->getId()));
         }
 
-        return $this->render('AppBundle::auteur/edit.html.twig', array(
+        return $this->render('AppBundle:Auteur:edit.html.twig', array(
             'auteur' => $auteur,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

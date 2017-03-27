@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Tag controller.
  *
- * @Route("tag")
+ * @Route("/admin/tag")
  */
 class TagController extends Controller
 {
@@ -26,7 +26,7 @@ class TagController extends Controller
 
         $tags = $em->getRepository('AppBundle:Tag')->findAll();
 
-        return $this->render('tag/index.html.twig', array(
+        return $this->render('AppBundle:Tag:index.html.twig', array(
             'tags' => $tags,
         ));
     }
@@ -51,7 +51,7 @@ class TagController extends Controller
             return $this->redirectToRoute('tag_show', array('id' => $tag->getId()));
         }
 
-        return $this->render('tag/new.html.twig', array(
+        return $this->render('AppBundle:Tag:new.html.twig', array(
             'tag' => $tag,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class TagController extends Controller
     {
         $deleteForm = $this->createDeleteForm($tag);
 
-        return $this->render('tag/show.html.twig', array(
+        return $this->render('AppBundle:Tag:show.html.twig', array(
             'tag' => $tag,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class TagController extends Controller
             return $this->redirectToRoute('tag_edit', array('id' => $tag->getId()));
         }
 
-        return $this->render('tag/edit.html.twig', array(
+        return $this->render('AppBundle:Tag:edit.html.twig', array(
             'tag' => $tag,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

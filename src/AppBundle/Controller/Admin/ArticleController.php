@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Article controller.
  *
- * @Route("article")
+ * @Route("/admin/article")
  */
 class ArticleController extends Controller
 {
@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
         $articles = $em->getRepository('AppBundle:Article')->findAll();
 
-        return $this->render('AppBundle::article/index.html.twig', array(
+        return $this->render('AppBundle:Article:index.html.twig', array(
             'articles' => $articles,
         ));
     }
@@ -51,7 +51,7 @@ class ArticleController extends Controller
             return $this->redirectToRoute('article_show', array('id' => $article->getId()));
         }
 
-        return $this->render('AppBundle::article/new.html.twig', array(
+        return $this->render('AppBundle:Article:new.html.twig', array(
             'article' => $article,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class ArticleController extends Controller
     {
         $deleteForm = $this->createDeleteForm($article);
 
-        return $this->render('AppBundle::article/show.html.twig', array(
+        return $this->render('AppBundle:Article:show.html.twig', array(
             'article' => $article,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class ArticleController extends Controller
             return $this->redirectToRoute('article_edit', array('id' => $article->getId()));
         }
 
-        return $this->render('AppBundle::article/edit.html.twig', array(
+        return $this->render('AppBundle:Article:edit.html.twig', array(
             'article' => $article,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
